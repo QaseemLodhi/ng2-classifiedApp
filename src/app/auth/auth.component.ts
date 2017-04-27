@@ -42,11 +42,12 @@ export class AuthComponent implements OnInit {
   }
 
   submitForm() {
+    console.log('this.authForm.value', this.authForm.value);
     this.isSubmitting = true;
     this.errors = new Errors();
 
     let credentials = this.authForm.value;
-   /* this.userService
+    this.userService
       .attemptAuth(this.authType, credentials)
     .subscribe(
       data => this.router.navigateByUrl('/'),
@@ -54,6 +55,6 @@ export class AuthComponent implements OnInit {
         this.errors = err;
         this.isSubmitting = false;
       }
-    );*/
+    );
   }
 }

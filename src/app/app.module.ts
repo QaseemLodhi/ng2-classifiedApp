@@ -12,9 +12,12 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './index';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
+import { HomeModule } from './home/home.module';
+import { EditorModule } from './editor/editor.module';
+// import { ArticleModule } from './article/article.module';
 import {
     ApiService,
-    //   ArticlesService,
+      ArticlesService,
     AuthGuard,
     //   CommentsService,
     FooterComponent,
@@ -38,7 +41,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     declarations: [
         AppComponent,
         FooterComponent,
-        HeaderComponent
+        HeaderComponent,
     ],
     imports: [
         /**
@@ -49,7 +52,9 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
         FormsModule,
         AuthModule,
         rootRouting,
-        SharedModule
+        SharedModule,
+        HomeModule,
+        EditorModule,
         /**
          * using routes
          */
@@ -59,8 +64,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
         ApiService,
         AuthGuard,
         JwtService,
-        UserService
-
+        UserService,
+        ArticlesService,
     ]
 })
 export class AppModule {

@@ -6,11 +6,15 @@ import './__2.1.1.workaround.ts'; // temporary until 2.1.1 things are patched in
 import * as path from 'path';
 import * as express from 'express';
 import * as compression from 'compression';
+import * as mongoose from 'mongoose';
+import * as bodyParser from 'body-parser';
 import { createEngine } from 'angular2-express-engine';
 import { enableProdMode } from '@angular/core';
 import { AppModule } from './app/app.node.module';
 import { environment } from './environments/environment';
 import { routes } from './server.routes';
+import serverConfig from './server/config/config';
+import auth from './server/routes/authRoutes';
 
 // App
 
@@ -18,6 +22,10 @@ const app  = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
 const port = process.env.PORT || 4200;
 
+// Normal express config defaults
+app.use(compression());
+app.use(bodyParser.json({ limit: '20mb' }));
+app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 /**
  * enable prod mode for production environments
  */
@@ -37,6 +45,14 @@ app.set('view engine', 'html');
  */
 app.use(compression());
 
+// MongoDB Connection
+mongoose.connect(serverConfig.mongoURL, (error) => {
+  if (error) {
+    console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
+    throw error;
+  }
+});
+
 /**
  * serve static files
  */
@@ -46,6 +62,17 @@ app.use('/', express.static(path.join(ROOT, 'client'), {index: false}));
  * place your api routes here
  */
 // app.use('/api', api);
+
+// require('./models/User');
+// // require('./models/Article');
+
+// app.use('/api', todo);
+app.use('/api', auth);
+
+// // require('./models/Comment');
+// require('./config/passport');
+
+// app.use(require('./routes'));
 
 /**
  * bootstrap universal app

@@ -1,6 +1,6 @@
 // import { Profile } from './profile.model';
 
-export class Article {
+/*export class Article {
   slug: string;
   title: string = '';
   description: string = '';
@@ -11,4 +11,12 @@ export class Article {
   favorited: boolean;
   favoritesCount: number;
 //   author: Profile;
+}*/
+
+export class Article {
+  title: string = '';
+  description: string = '';
+  body: string = '';
+  createdAt: string;
+  updatedAt: string;
 }

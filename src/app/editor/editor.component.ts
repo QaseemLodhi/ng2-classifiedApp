@@ -10,7 +10,7 @@ import { Article, ArticlesService } from '../shared';
 })
 export class EditorComponent implements OnInit {
   article: Article = new Article();
-  articleForm: FormGroup;
+  postForm: FormGroup;
   tagField = new FormControl();
   errors: Object = {};
   isSubmitting: boolean = false;
@@ -22,7 +22,7 @@ export class EditorComponent implements OnInit {
     private fb: FormBuilder
   ) {
     // use the FormBuilder to create a form group
-    this.articleForm = this.fb.group({
+    this.postForm = this.fb.group({
       title: '',
       description: '',
       body: '',
@@ -37,13 +37,13 @@ export class EditorComponent implements OnInit {
       (data: {article: Article}) => {
         if (data.article) {
           this.article = data.article;
-          this.articleForm.patchValue(data.article);
+          this.postForm.patchValue(data.article);
         }
       }
     );
   }
 
-  addTag() {
+ /* addTag() {
     // retrieve tag control
     let tag = this.tagField.value;
     // only add tag if it does not exist yet
@@ -52,24 +52,26 @@ export class EditorComponent implements OnInit {
     }
     // clear the input
     this.tagField.reset('');
-  }
+  }*/
 
-  removeTag(tagName: string) {
+  /*removeTag(tagName: string) {
     this.article.tagList = this.article.tagList.filter((tag) => tag !== tagName);
-  }
+  }*/
 
   submitForm() {
     debugger;
     this.isSubmitting = true;
 
     // update the model
-    this.updateArticle(this.articleForm.value);
+    this.updateArticle(this.postForm.value);
 
     // post the changes
     this.articlesService
     .save(this.article)
     .subscribe(
-      article => this.router.navigateByUrl('/article/' + article.slug),
+      post =>
+      console.log(post),
+        // this.router.navigateByUrl('/article/' + article),
       err => {
         this.errors = err;
         this.isSubmitting = false;

@@ -3,3 +3,8 @@
 body{
     font-size: 16px;
 }
+
+.nav-pills.outline-active .nav-link.active{
+    border-bottom: 2px solid #23527c !important;
+    color: #23527c !important;
+}

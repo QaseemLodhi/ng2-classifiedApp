@@ -30,10 +30,18 @@ export class ApiService {
     return Observable.throw(error.json());
   }
 
-  get(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {
+  /*get(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {
     return this.http.get(`${path}`, { headers: this.setHeaders(), search: params })
       .catch(this.formatErrors)
       .map((res: Response) => res.json());
+  }*/
+
+  get(path: string): Observable<any> {
+    debugger;
+    return this.http.get(`${path}`, { headers: this.setHeaders()})
+      .catch(this.formatErrors)
+      .map((res: Response) =>
+        res.json());
   }
 
   put(path: string, body: Object = {}): Observable<any> {
@@ -47,12 +55,12 @@ export class ApiService {
   }
 
   post(path: string, body: Object = {}): Observable<any> {
-    debugger;
     console.log('path', path);
     console.log('body', body);
-    return this.http.post(`${path}`,body['user'],{ headers: this.setHeaders() })
+    return this.http.post(`${path}`,body,{ headers: this.setHeaders() })
       .catch(this.formatErrors)
-      .map((res: Response) => res.json());
+      .map((res: Response) =>
+        res.json());
   }
 
   delete(path): Observable<any> {

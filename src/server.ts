@@ -15,6 +15,7 @@ import { environment } from './environments/environment';
 import { routes } from './server.routes';
 import serverConfig from './server/config/config';
 import auth from './server/routes/authRoutes';
+import post from './server/routes/postRoutes';
 
 // App
 
@@ -68,6 +69,7 @@ app.use('/', express.static(path.join(ROOT, 'client'), {index: false}));
 
 // app.use('/api', todo);
 app.use('/api', auth);
+app.use('/api', post);
 
 // // require('./models/Comment');
 // require('./config/passport');

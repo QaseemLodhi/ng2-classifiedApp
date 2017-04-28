@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
         // set the article list accordingly
         if (authenticated) {
-          this.setListTo('feed');
+          this.setListTo('userPosts');
         } else {
           this.setListTo('all');
         }
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
 
   setListTo(type: string = '', filters: Object = {}) {
     // If feed is requested but user is not authenticated, redirect to login
-    if (type === 'feed' && !this.isAuthenticated) {
+    if (type === 'userPosts' && !this.isAuthenticated) {
       this.router.navigateByUrl('/login');
       return;
     }

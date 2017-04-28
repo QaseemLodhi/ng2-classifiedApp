@@ -19,4 +19,5 @@ export class Article {
   body: string = '';
   createdAt: string;
   updatedAt: string;
+  token: string;
 }

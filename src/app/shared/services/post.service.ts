@@ -13,21 +13,22 @@ export class ArticlesService {
     private apiService: ApiService
   ) {}
 
-  query(config: ArticleListConfig): Observable<{ articles: Article[], articlesCount: number }> {
+  query(config: ArticleListConfig, token): Observable<{ articles: Article[], articlesCount: number }> {
     debugger;
     // Convert any filters over to Angular's URLSearchParams
     let params: URLSearchParams = new URLSearchParams();
 
-    Object.keys(config.filters)
+    /*Object.keys(config.filters)
     .forEach((key) => {
       params.set(key, config.filters[key]);
-    });
+    });*/
 
     /*return this.apiService
     .get('/articles' + ((config.type === 'feed') ? '/feed' : ''),params).map(data => data);*/
     return this.apiService
-      .get('/api/posts' + ((config.type === 'feed') ? '/feed' : '')).map
-      (res => res.data);
+      .get('/api/posts' + ((config.type === 'userPosts') ? '/userPosts?token=' + token : '')).map
+      (res =>
+        res.data);
   }
 
   get(slug): Observable<Article> {

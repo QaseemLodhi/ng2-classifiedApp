@@ -1,7 +1,9 @@
 import Post from '../../models/post';
+import { verifyToken } from '../../config/verify';
+import { authenticate } from '../../config/authenticate';
 
-export function getPosts(req, res) {
-     console.log(req.body);
+export function getAllPosts(req, res) {
+  console.log(req.body);
   Post.find().sort('-date').exec((err, Todos) => {
     if (err) {
       return res.json({ success: false, data: null, error: err });
@@ -10,23 +12,32 @@ export function getPosts(req, res) {
   });
 }
 
-export function addPost(req, res) {
-  if (!req.body.title) {
-    return res.json({ success: false, data: null, error: 'Missing post task!' });
-    }
-  const newPost = new Post(req.body);
-  newPost.save((err, saved) => {
+export function getUserPosts(req, res) {
+  authenticate(req.query).then(verifiedUser => {
+    Post.find({ user_id: verifiedUser['id'] }).sort('-date').exec((err, Todos) => {
       if (err) {
         return res.json({ success: false, data: null, error: err });
-    }
-    /*Post.findOne({ _id: saved._id }).exec((err, post) => {
-        if (err) {
-        return res.json({ success: false, data: null, error: err });
-        }
-      res.json({ success: true, data: post, error: null });
-      });*/
-    res.json({ success: true, data: saved, error: null });  
+      }
+      res.json({ success: true, data: Todos, error: null });
+    });
   });
+}
+
+export function addPost(req, res) {
+  authenticate(req.body).then(verifiedUser => {
+    req.body.user_id = verifiedUser['id'];
+    if (!req.body.title) {
+      return res.json({ success: false, data: null, error: 'Missing post task!' });
+    }
+    const newPost = new Post(req.body);
+    newPost.save((err, saved) => {
+      if (err) {
+        return res.json({ success: false, data: null, error: err });
+      }
+      res.json({ success: true, data: saved, error: null });
+    });
+  });
+
 }
 
 export function getPost(req, res) {
@@ -55,7 +66,7 @@ export function updatePost(req, res) {
       return res.json({ success: false, data: null, error: 'Todo not found' });
     }
     else {
-       res.json({ success: true, data: result, error: null });
+      res.json({ success: true, data: result, error: null });
     }
   })
 }

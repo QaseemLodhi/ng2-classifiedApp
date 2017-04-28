@@ -10,7 +10,6 @@ export function show(req, res) {
 
 }
 export function register(req, res) {
-    console.log('req.body', req.body);
     User.findOne({ email: req.body.email })
         .exec((err, userObj) => {
             if (err) {

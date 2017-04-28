@@ -1,10 +1,10 @@
 <nav class="navbar navbar-light">
   <div class="container">
-    <a class="logo-font" routerLink="/">Bechday</a>
+    <a style="font-size:x-large" class="logo-font" routerLink="/">Bechday</a>
 
     <!-- Show this for logged out users -->
     <ul *showAuthed="false"
-      class="nav navbar-nav pull-xs-right">
+      class="nav navbar-nav pull-xs-right" style="font-size:13px">
 
       <li class="nav-item">
         <a class="nav-link"
@@ -33,7 +33,7 @@
 
     <!-- Show this for logged in users -->
     <ul *showAuthed="true"
-      class="nav navbar-nav pull-xs-right">
+      class="nav navbar-nav pull-xs-right" style="font-size:13px">
 
       <li class="nav-item">
         <a class="nav-link"
@@ -48,7 +48,7 @@
         <a class="nav-link"
           routerLink="/editor"
           routerLinkActive="active">
-          <i class="ion-compose"></i>&nbsp;New Article
+          <i class="ion-compose"></i>&nbsp;New Post
         </a>
       </li>
 

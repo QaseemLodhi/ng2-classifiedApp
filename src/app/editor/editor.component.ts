@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Article, ArticlesService } from '../shared';
+import { Article, ArticlesService, JwtService } from '../shared';
 
 @Component({
   selector: 'editor-page',
@@ -19,7 +19,8 @@ export class EditorComponent implements OnInit {
     private articlesService: ArticlesService,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private jwtService: JwtService
   ) {
     // use the FormBuilder to create a form group
     this.postForm = this.fb.group({
@@ -66,12 +67,11 @@ export class EditorComponent implements OnInit {
     this.updateArticle(this.postForm.value);
 
     // post the changes
+    this.article.token = this.jwtService.getToken();
     this.articlesService
     .save(this.article)
     .subscribe(
-      post =>
-      console.log(post),
-        // this.router.navigateByUrl('/article/' + article),
+      post => this.router.navigateByUrl('/'),
       err => {
         this.errors = err;
         this.isSubmitting = false;

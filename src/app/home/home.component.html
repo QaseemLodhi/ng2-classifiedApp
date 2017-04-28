@@ -10,21 +10,21 @@
   <div class="container page">
     <div class="row">
 
-      <div class="col-md-9">
+      <div class="col-md-12" style="width:100%">
         <div class="feed-toggle">
           <ul class="nav nav-pills outline-active">
             <li class="nav-item">
               <a class="nav-link"
-                 [ngClass]="{'active': listConfig.type === 'feed'}"
-                 (click)="setListTo('feed')">
-                 Your Feed
+                 [ngClass]="{'active': listConfig.type === 'userPosts'}"
+                 (click)="setListTo('userPosts')">
+                 Your Post
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link"
                  [ngClass]="{'active': listConfig.type === 'all' && !listConfig.filters.tag}"
                  (click)="setListTo('all')">
-                 Global Feed
+                 Global Post
               </a>
             </li>
             <li class="nav-item" [hidden]="!listConfig.filters.tag">

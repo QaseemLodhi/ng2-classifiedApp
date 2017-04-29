@@ -48,8 +48,6 @@ export class ArticleComponent implements OnInit {
     this.userService.currentUser.subscribe(
       (userData: User) => {
         this.currentUser = userData;
-        debugger;
-
         this.canModify = (this.currentUser.id === this.article.user_id);
       }
     );

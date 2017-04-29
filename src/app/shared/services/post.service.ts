@@ -31,7 +31,6 @@ export class ArticlesService {
   }
 
   get(slug): Observable<Article> {
-    debugger;
     return this.apiService.get('api/posts/' + slug)
       .map(res =>
         res.data);

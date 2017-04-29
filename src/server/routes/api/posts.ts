@@ -1,6 +1,6 @@
 import Post from '../../models/post';
-import { verifyToken } from '../../config/verify';
 import { authenticate } from '../../config/authenticate';
+var shortid = require('shortid');
 
 export function getAllPosts(req, res) {
   console.log(req.body);
@@ -26,6 +26,8 @@ export function getUserPosts(req, res) {
 export function addPost(req, res) {
   authenticate(req.body).then(verifiedUser => {
     req.body.user_id = verifiedUser['id'];
+    req.body.slug = shortid.generate();
+    console.log(req.body);
     if (!req.body.title) {
       return res.json({ success: false, data: null, error: 'Missing post task!' });
     }
@@ -41,7 +43,8 @@ export function addPost(req, res) {
 }
 
 export function getPost(req, res) {
-  Post.findOne({ _id: req.params._id }).exec((err, todo) => {
+  console.log(req.body);
+  Post.findOne({ slug: req.params.id }).exec((err, todo) => {
     if (err) {
       return res.json({ success: false, data: null, error: err });
     }

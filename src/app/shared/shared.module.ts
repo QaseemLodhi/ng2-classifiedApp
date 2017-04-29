@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import {
   ArticleListComponent,
-  // ArticleMetaComponent,
+  ArticleMetaComponent,
   ArticlePreviewComponent
 } from './post-helpers';
 // import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
@@ -23,7 +23,7 @@ import { ShowAuthedDirective } from './show-authed.directive';
   ],
   declarations: [
     ArticleListComponent,
-    // ArticleMetaComponent,
+    ArticleMetaComponent,
     ArticlePreviewComponent,
     // FavoriteButtonComponent,
     // FollowButtonComponent,
@@ -32,7 +32,7 @@ import { ShowAuthedDirective } from './show-authed.directive';
   ],
   exports: [
     ArticleListComponent,
-    // ArticleMetaComponent,
+    ArticleMetaComponent,
     ArticlePreviewComponent,
     CommonModule,
     // FavoriteButtonComponent,

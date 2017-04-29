@@ -16,6 +16,7 @@ import { routes } from './server.routes';
 import serverConfig from './server/config/config';
 import auth from './server/routes/authRoutes';
 import post from './server/routes/postRoutes';
+import user from './server/routes/userRoutes';
 
 // App
 
@@ -70,6 +71,7 @@ app.use('/', express.static(path.join(ROOT, 'client'), {index: false}));
 // app.use('/api', todo);
 app.use('/api', auth);
 app.use('/api', post);
+app.use('/api', user);
 
 // // require('./models/Comment');
 // require('./config/passport');

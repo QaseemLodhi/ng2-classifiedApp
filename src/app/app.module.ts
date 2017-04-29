@@ -14,12 +14,12 @@ import { RouterModule } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
 import { HomeModule } from './home/home.module';
 import { EditorModule } from './editor/editor.module';
-// import { ArticleModule } from './article/article.module';
+import { ArticleModule } from './post/post.module';
 import {
     ApiService,
-      ArticlesService,
+    ArticlesService,
     AuthGuard,
-    //   CommentsService,
+      CommentsService,
     FooterComponent,
     HeaderComponent,
     JwtService,
@@ -55,6 +55,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
         SharedModule,
         HomeModule,
         EditorModule,
+        ArticleModule
         /**
          * using routes
          */
@@ -66,6 +67,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
         JwtService,
         UserService,
         ArticlesService,
+        CommentsService,
     ]
 })
 export class AppModule {

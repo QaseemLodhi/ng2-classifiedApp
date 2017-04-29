@@ -53,6 +53,8 @@ export function login(req, res) {
                     username: userObj['username'],
                     email: userObj['email'],
                 }
+                console.log('login', currentUser);
+                console.log('login1', userObj);
                 let token = createToken(currentUser);
                 currentUser['token'] = token;
                 return res.json({ success: true, data: currentUser, error: null });
@@ -62,3 +64,4 @@ export function login(req, res) {
             }
         });
 }
+

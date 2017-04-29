@@ -14,6 +14,8 @@
 }*/
 
 export class Article {
+  slug: string;
+  user_id: string;
   title: string = '';
   description: string = '';
   body: string = '';

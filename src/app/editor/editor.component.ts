@@ -60,7 +60,6 @@ export class EditorComponent implements OnInit {
   }*/
 
   submitForm() {
-    debugger;
     this.isSubmitting = true;
 
     // update the model

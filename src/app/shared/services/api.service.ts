@@ -37,7 +37,6 @@ export class ApiService {
   }*/
 
   get(path: string): Observable<any> {
-    debugger;
     return this.http.get(`${path}`, { headers: this.setHeaders()})
       .catch(this.formatErrors)
       .map((res: Response) =>

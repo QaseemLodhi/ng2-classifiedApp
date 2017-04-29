@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '../models';
-import { UserService } from '../services';
+import { UserService, JwtService } from '../services';
 
 @Component({
   selector: 'layout-header',
@@ -9,8 +10,10 @@ import { UserService } from '../services';
 })
 export class HeaderComponent implements OnInit {
   constructor(
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private jwtService: JwtService,
+    private router: Router,
+  ) { }
 
   currentUser: User;
 
@@ -20,5 +23,11 @@ export class HeaderComponent implements OnInit {
         this.currentUser = userData;
       }
     )
+  }
+
+  logout() {
+    debugger;
+    this.userService.purgeAuth();
+    this.router.navigateByUrl('/');
   }
 }

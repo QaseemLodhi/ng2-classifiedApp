@@ -1,0 +1,16 @@
+<div class="article-meta">
+  <!--<a [routerLink]="['/profile', currentUser.username]">
+    <img [src]="article.author.image" />
+  </a>-->
+
+  <div class="info">
+    <a class="author">
+      {{ currentUser.username }}
+    </a>
+    <span class="date">
+      {{ article.createdAt | date: 'longDate' }}
+    </span>
+  </div>
+
+  <ng-content></ng-content>
+</div>

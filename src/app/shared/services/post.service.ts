@@ -14,7 +14,6 @@ export class ArticlesService {
   ) {}
 
   query(config: ArticleListConfig, token): Observable<{ articles: Article[], articlesCount: number }> {
-    debugger;
     // Convert any filters over to Angular's URLSearchParams
     let params: URLSearchParams = new URLSearchParams();
 
@@ -32,8 +31,10 @@ export class ArticlesService {
   }
 
   get(slug): Observable<Article> {
-    return this.apiService.get('/articles/' + slug)
-           .map(data => data.article);
+    debugger;
+    return this.apiService.get('api/posts/' + slug)
+      .map(res =>
+        res.data);
   }
 
   destroy(slug) {
